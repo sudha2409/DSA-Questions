@@ -1,0 +1,19 @@
+var majorityElement = function(nums) {
+    let map = {};
+    let result = [];
+    let thershold = (nums.length/3); 
+    for(let  num of nums){
+        if(map[num] === undefined){
+            map[num] = 0;
+        }
+       map[num] += 1;
+    }
+    console.log (map);
+    for(let keys in map)
+    {
+    if(map[keys] > thershold)
+    result.push(parseInt(keys));
+    }
+  
+    return result;
+};
