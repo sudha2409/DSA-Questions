@@ -1,0 +1,30 @@
+var maxFrequencyElements = function(nums) {
+    let freq = {};
+    for(let i = 0;i<nums.length;i++){
+       if(freq[nums[i]] === undefined){
+        freq[nums[i]] = 1;
+       }
+       else{
+        freq[nums[i]]++;
+       }
+    }
+    console.log(freq);
+    let maxFreq = 0;
+    for(let key in freq){
+        if(freq[key]>maxFreq){
+            maxFreq = freq[key];
+        }
+    }
+    console.log(maxFreq);
+    let sum = 0;
+    for(let key in freq){
+        if(freq[key] === maxFreq){
+            sum += freq[key];
+        }
+    }
+    console.log(sum);
+    return sum;
+
+    
+};
+leetcode link :- https://leetcode.com/problems/count-elements-with-maximum-frequency/description/
