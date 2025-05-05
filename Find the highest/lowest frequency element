@@ -1,0 +1,45 @@
+Input: arr = [4, 4, 5, 5, 6]
+
+Output: 4
+
+Explanation: Both 4 and 5 appear twice, but 4 is smaller. So, 4 is the most frequent element.
+class Solution {
+    mostFrequentElement(nums) {
+        let freq = {};
+        for(let i=0;i<nums.length;i++){
+            if(freq[nums[i]]=== undefined){
+                freq[nums[i]] = 1;
+            }
+            else{
+                freq[nums[i]]++;
+            }
+        }
+        //return freq;
+        let max = 0;
+        for(let key in freq){
+            if(freq[key]>max){
+                max = freq[key];
+            }
+        }
+       let result=Infinity;
+       for(let key in freq){
+           if(freq[key] === max){
+               console.log(freq[key]);
+               console.log(max);
+                let numKey = parseInt(key);
+                console.log(numKey,'74 line');
+           if(numKey<result){
+               result = numKey;
+           }
+           }
+          
+       }
+       return result;
+    }
+   
+    
+}
+let sol = new Solution();
+console.log(sol.mostFrequentElement([4, 4, 5, 5, 6]));
+Note :- this is strivers basic Hashing question no 3...
+This 
