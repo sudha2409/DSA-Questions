@@ -1,0 +1,19 @@
+var getIntersectionNode = function(headA, headB) {
+    let tempA = headA;
+    let tempB = headB;
+    while(tempA !== tempB){
+      if(tempA === null){
+        tempA = headB;
+      }
+      else{
+        tempA = tempA.next;
+      }
+      if(tempB === null){
+        tempB = headA;
+      }
+      else{
+        tempB = tempB.next;
+      }
+    }
+    return tempA;
+};
