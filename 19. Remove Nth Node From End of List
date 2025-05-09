@@ -1,0 +1,24 @@
+var removeNthFromEnd = function(head, n) {
+    let temp1 = head;
+    let temp2 = head;
+    
+    for (let i = 0; i < n; i++) {
+        temp1 = temp1.next;
+       // console.log(temp1);
+    }
+
+  
+    if (temp1 === null) return head.next;
+
+   
+    while (temp1.next !== null) {
+        temp1 = temp1.next;
+        temp2 = temp2.next;
+    }
+
+   console.log(temp2.next.next);
+    temp2.next = temp2.next.next;
+
+
+    return head;
+};
