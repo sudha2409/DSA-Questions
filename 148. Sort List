@@ -1,0 +1,48 @@
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+function sortList(head) {
+    if (!head || !head.next) return head;
+    let fast = head;
+    let slow = head;
+    let prev = null;
+    while(fast!== null && fast?.next !== null){
+         prev = slow;
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    prev.next = null;
+    const left = sortList(head);
+    const right = sortList(slow);
+    return merge(left,right);
+}
+    function merge(left,right){
+        const dummy = new ListNode(0);
+        let tail = dummy;
+        while(left !== null && right !== null){
+            if(left.val<right.val){
+                tail.next = left;
+                left = left.next;
+
+            }
+            else{
+                 tail.next = right;
+                right = right.next;
+
+            }
+            tail = tail?.next;
+        }
+         tail.next = left  ? left : right ;
+         return dummy.next;
+    }
+
+
+
