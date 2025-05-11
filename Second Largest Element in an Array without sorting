@@ -1,0 +1,20 @@
+class Solution {
+    getSecondLargest(nums) {
+        // code here
+         if (nums.length < 2) return -1;
+        let max = -Infinity;
+        let secondMax = Infinity;
+        for(let i = 0;i<nums.length;i++){
+            if(nums[i]> max ){
+              secondMax = max;
+                max = nums[i];
+            }
+            else if(nums[i]<max && nums[i]>secondMax){
+                secondMax = nums[i];
+                
+            }
+        }
+        
+       return secondMax === -Infinity ? -1 : secondMax;
+    }
+}
