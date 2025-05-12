@@ -1,0 +1,19 @@
+var numSubseq = function(nums, target) {
+   let count = 0;
+    function addRemove(start,arr){
+       if(arr.length>0){
+        let min = Math.min(...arr);
+        let max = Math.max(...arr);
+        if(min+max<=target) count++;
+       }
+        for(let i=start;i<nums.length;i++){
+            arr.push(nums[i]);
+            addRemove(i+1,arr);
+            arr.pop();
+        }
+
+    }
+    addRemove(0,[]);
+    return count;
+    
+};
