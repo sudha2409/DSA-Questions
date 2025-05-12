@@ -1,0 +1,16 @@
+var subsets = function(nums) {
+    let result = [];
+    function addRemove (start,arr) {
+        result.push([...arr]);
+        console.log(result,'result');
+        for(let i = start;i<nums.length;i++){
+            arr.push(nums[i]);
+            addRemove(i+1,arr);
+            arr.pop();
+        }
+    }
+    addRemove(0,[]);
+    return result;
+};
+
+console.log(subsets([1,2,3]))
