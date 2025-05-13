@@ -1,0 +1,50 @@
+var solveNQueens = function(n) {
+    let board = [];
+    let ans = [];
+    for(let i=0;i<n;i++){
+        board.push('.'.repeat(n));
+    }
+    nQueens(board,0,n,ans);
+    
+    function isSafe(board,row,col,n){
+        //horizontally
+        for(let i=0;i<n;i++){
+            if(board[row][i]==="Q")return false;
+        }
+        //Vertical
+        for(let j=0;j<n;j++){
+            if((board[j][col]==="Q"))return false;
+        }
+        //left-diagonal
+        for(let i=row,j=col;i>=0 && j>=0;i--,j--){
+             if(board[i][j] === "Q" )return false;
+        }
+        for(let i=row,j=col;i>=0 && j<n;i--,j++){
+             if(board[i][j] === "Q" )return false;
+        }
+        return true;
+        
+       
+    }
+    
+    function nQueens(board,row,n,ans){
+        if(row===n){
+            ans.push([...board]);
+            return;
+        }
+        for(let j=0;j<n;j++){
+             if(isSafe(board,row,j,n)){
+            let rowArr = board[row].split('');
+            rowArr[j] = 'Q'
+           board[row] = rowArr.join('');
+           nQueens(board,row+1,n,ans);
+           rowArr[j] = '.';
+           board[row] = rowArr.join('');
+        }
+            
+        }
+       
+    }
+    return ans;
+};
+console.log(solveNQueens(4));
