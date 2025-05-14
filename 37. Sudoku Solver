@@ -1,0 +1,46 @@
+var solveSudoku = function(board) {
+    function isSafe(board,row,col,num){
+        num = num.toString();
+        for(let i=0;i<9;i++){
+            if(board[row][i]===num)return false;
+            if(board[i][col]===num)return false;
+        }
+        let boxRow = 3* Math.floor(row/3);
+        let boxCol = 3* Math.floor(col/3);
+        for(let i=0;i<3;i++){
+            for(let j=0;j<3;j++){
+        if (board[boxRow + i][boxCol + j] === num){
+                    return false;
+                }
+            }
+        }
+        return true;
+        
+    }
+    
+for(let i=0;i<9;i++)//row
+{
+    for(let j=0;j<9;j++){//column
+    //board me sb "." h abhi
+        if(board[i][j] === "."){
+            for(let k=1;k<=9;k++){
+                //convert number to string
+                let number = k.toString();
+                if(isSafe(board,i,j,k)){
+                    //digit dal rhi 
+                    board[i][j] = number;
+                    if(solveSudoku(board)) return true;
+                    // ab backtracking solution nhi mila 
+                    //wapas "." daldo
+                    board[i][j] = '.'
+                }
+                
+            }
+            //agr kuch bhi place nhi hoga 
+            return false;
+        }
+    }
+}
+//sb fill ho jayenge sudoku solve
+return true;
+};
