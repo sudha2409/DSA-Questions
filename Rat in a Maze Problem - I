@@ -1,0 +1,38 @@
+class Solution {
+    ratInMaze(maze) {
+        if (maze[0][0] === 0 || maze[maze.length - 1][maze.length - 1] === 0) return [];
+
+        let ans = [];
+        let alreadyVisit = Array.from({ length: maze.length }, () => Array(maze.length).fill(false));
+
+        function helper(row, col, path) {
+            if (
+                row < 0 || col < 0 ||
+                row >= maze.length || col >= maze.length ||
+                maze[row][col] === 0 ||
+                alreadyVisit[row][col]
+            ) {
+                return;
+            }
+
+            if (row === maze.length - 1 && col === maze.length - 1) {
+                ans.push(path);
+                return;
+            }
+
+            alreadyVisit[row][col] = true;
+
+            helper(row + 1, col, path + 'D');
+            helper(row, col - 1, path + 'L');
+            helper(row, col + 1, path + 'R');
+            helper(row - 1, col, path + 'U');
+
+            alreadyVisit[row][col] = false;
+        }
+
+        helper(0, 0, '');
+        return ans;
+    }
+}
+
+
