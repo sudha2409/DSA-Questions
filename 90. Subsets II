@@ -1,0 +1,22 @@
+var subsetsWithDup = function(nums) {
+    nums.sort((a,b)=> a-b);
+    let result = [];
+    let s = new Set();
+    
+
+    function allSubsets(arr,startIndex){
+        let key = arr.toString();
+        if(!s.has(key)){
+            result.push([...arr]);
+            s.add(key);
+        }
+       
+        for(let i=startIndex;i<nums.length;i++){
+            arr.push(nums[i]);
+            allSubsets(arr,i+1)
+            arr.pop();
+        }
+    }
+    allSubsets([],0);
+    return result;
+};
