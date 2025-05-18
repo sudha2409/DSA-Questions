@@ -1,0 +1,33 @@
+var combinationSum = function(candidates, target) {
+let comb = [];
+let ans = [];
+let s = new Set();
+    combSum(candidates,0,comb,ans,target,s);
+    
+    function combSum(candidates,i,comb,ans,target,s){
+         if (i === candidates.length || target < 0) return;
+        if(target === 0){
+            let key = comb.toString();
+            if (!s.has(key)) {
+                ans.push([...comb]); 
+                s.add(key); 
+            }
+            return;
+          
+        }
+       
+       
+        comb.push(candidates[i]); 
+    //if we are considering element for single time
+       combSum(candidates,i+1,comb,ans,target-candidates[i],s);
+        //if we are considering element for multiple time
+        combSum(candidates,i,comb,ans,target-candidates[i],s)
+        //if we are not considering element(excluding)
+        comb.pop();
+        combSum(candidates,i+1,comb,ans,target,s)
+    }
+    
+   return ans;
+    
+}
+console.log(combinationSum([2,3,6,7],7));
