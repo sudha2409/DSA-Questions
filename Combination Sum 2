@@ -1,0 +1,30 @@
+var combinationSum2 = function(candidates, target) {
+    let ans = [];
+    function generateAllcombinations(startIndex,target,comb)
+    {
+        if(target === 0){
+            ans.push([...comb]);
+            return;
+        }
+        
+        for(let i = startIndex;i<candidates.length;i++){
+            let current = candidates[i];
+            if(current>target)continue;
+            comb.push(candidates[i]);
+        generateAllcombinations(i+1,target-candidates[i],comb);
+        comb.pop();
+            
+        }
+    }
+    generateAllcombinations(0,target,[]);
+    return ans;
+    
+};
+console.log(combinationSum2([10,1,2,7,6,1,5],8));
+//output
+// [
+// [1,1,6],
+// [1,2,5],
+// [1,7],
+// [2,6]
+// ]
