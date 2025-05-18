@@ -1,15 +1,23 @@
-var combinationSum2 = function(candidates, target) {
+var combinationSum2 = function(arr, target) {
     let ans = [];
+    let candidates = arr.sort();
+    let s = new Set();
     function generateAllcombinations(startIndex,target,comb)
     {
         if(target === 0){
-            ans.push([...comb]);
+            let key = comb.toString();
+            if (!s.has(key)) {
+                ans.push([...comb]); 
+                s.add(key); 
+            }
             return;
         }
         
         for(let i = startIndex;i<candidates.length;i++){
             let current = candidates[i];
             if(current>target)continue;
+        //Skip duplicates AFTER the first occurrence in a recursive level
+        if (i > startIndex && candidates[i] === candidates[i - 1]) continue;
             comb.push(candidates[i]);
         generateAllcombinations(i+1,target-candidates[i],comb);
         comb.pop();
