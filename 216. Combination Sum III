@@ -1,0 +1,30 @@
+var combinationSum3 = function(k, n) {
+    let result = [];
+    let givenArr = [];
+    for(let i=1;i<=9;i++){
+        givenArr.push(i);
+    }
+    //console.log(givenArr);
+function generateAllCombinations(startIndex,comb,givenArr,n)
+{
+        if(n===0 && comb.length === k){
+            result.push([...comb]);
+            return;
+        }
+        for(let i =startIndex;i<givenArr.length;i++){
+            let current = givenArr[i];
+            if(current>n)continue;
+            comb.push(current);
+    generateAllCombinations(i+1,comb,givenArr,n-givenArr[i]);
+        comb.pop();
+        }
+        
+    }
+    generateAllCombinations(0,[],givenArr,n);
+    return result;
+    
+};
+
+console.log(combinationSum3(3,7));
+//k is total number u can use
+// n is sum
