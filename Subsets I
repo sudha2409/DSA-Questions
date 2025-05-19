@@ -1,0 +1,29 @@
+Given an array nums of n integers.Return sum of all subsets of the array nums.
+Output can be printed in any order.
+
+Input : nums = [2, 3]
+Output : [0, 2, 3, 5]
+Explanation :
+When no elements is taken then Sum = 0.
+When only 2 is taken then Sum = 2.
+When only 3 is taken then Sum = 3.
+When element 2 and 3 are taken then sum = 2+3 = 5.
+
+
+class Solution {
+    subsetSums(nums) {
+        let result = [];
+        function allSubsetSums(startIndex,arr){
+            result.push(arr.reduce((a, b) => a + b, 0));
+                
+            for(let i=startIndex;i<nums.length;i++){
+                arr.push(nums[i]);
+                allSubsetSums(i+1,arr)
+                arr.pop();
+            }
+            
+        }
+        allSubsetSums(0,[]);
+       return result;
+    }
+}
